@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#6a3bd8"/>
+  <title>Musicala | Primeros auxilios emocionales</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="app-header">
+    <img src="logo.png" alt="Musicala" class="logo">
+    <p class="eyebrow">Vacacionales y clases</p>
+    <h1>Primeros auxilios emocionales</h1>
+    <p class="subtitle">Acompaña con calma momentos de ansiedad, llanto, miedo o sobrecarga sensorial.</p>
+  </header>
+
+  <main>
+    <!-- Botón principal de emergencia -->
+    <button id="sosHero" class="sos-hero">
+      <span class="sos-icon">🤍</span>
+      <span class="sos-text">
+        <strong>Necesito ayuda ahora</strong>
+        <small>Guía paso a paso · primeros 3 minutos</small>
+      </span>
+      <span class="sos-arrow">›</span>
+    </button>
+
+    <!-- Accesos rápidos -->
+    <nav class="quick-nav" aria-label="Accesos rápidos">
+      <a href="#respirar">🌬️ Respirar</a>
+      <a href="#ruido">🎧 Ruido</a>
+      <a href="#grounding">🧭 Grounding</a>
+      <a href="#cuerpo">🧸 Cuerpo</a>
+      <a href="#frases">💬 Frases</a>
+      <a href="#semaforo">🚦 Semáforo</a>
+    </nav>
+
+    <!-- Herramientas -->
+    <section id="respirar" class="card">
+      <h2>🌬️ Respiración guiada</h2>
+      <p>Para ansiedad, miedo, llanto o respiración rápida. Ideal de 4 a 12 años.</p>
+      <div class="breathing-widget">
+        <div id="breathStage" class="breath-stage"></div>
+        <p id="breathText" class="breath-text">Huele una flor</p>
+        <div class="btn-row">
+          <button id="startBreathing" class="btn-primary">▶ Iniciar 1 minuto</button>
+          <button id="stopBreathing" class="btn-soft">Detener</button>
+        </div>
+      </div>
+      <details>
+        <summary>Guion para la profe</summary>
+        <p>“No tienes que hacerlo perfecto. Mira mi respiración. Huele una flor… ahora sopla una vela. Otra vez, suavecito.”</p>
+      </details>
+    </section>
+
+    <section id="grounding" class="card">
+      <h2>🧭 Grounding 5-4-3-2-1</h2>
+      <p>Para volver al presente cuando hay bloqueo, miedo o sensación de perder el control.</p>
+      <ol class="grounding-list">
+        <li><b>5</b> cosas que pueda <b>ver</b></li>
+        <li><b>4</b> cosas que pueda <b>tocar</b></li>
+        <li><b>3</b> sonidos suaves que pueda <b>notar</b></li>
+        <li><b>2</b> olores o sensaciones</li>
+        <li><b>1</b> frase segura: “Estoy aquí y estoy a salvo”</li>
+      </ol>
+      <button class="copy btn-soft" data-copy="Vamos a buscar juntas/os 5 cosas que ves, 4 que puedes tocar, 3 sonidos suaves, 2 olores o sensaciones y una frase segura: estoy aquí y estoy a salvo.">📋 Copiar guía</button>
+    </section>
+
+    <section id="ruido" class="card">
+      <h2>🎧 Sobrecarga por ruido</h2>
+      <p>Cuando el detonante sea volumen, gritos, eco, parlantes o muchos niños hablando a la vez.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>Alejar de parlantes, puertas, eco o grupos grandes</span></label></li>
+        <li><label><input type="checkbox"><span>Ofrecer audífonos, tapones o manos sobre orejas, sin obligar</span></label></li>
+        <li><label><input type="checkbox"><span>Ubicar cerca de una salida o rincón tranquilo</span></label></li>
+        <li><label><input type="checkbox"><span>Crear señal de pausa: mano en el corazón, tarjeta o gesto</span></label></li>
+        <li><label><input type="checkbox"><span>Avisar al equipo para bajar volumen y gritos</span></label></li>
+      </ul>
+    </section>
+
+    <section id="cuerpo" class="card">
+      <h2>🧸 Trabajo pesado suave</h2>
+      <p>Para niños inquietos, saturados o con energía desbordada. Siempre como juego, nunca como castigo.</p>
+      <div class="chips">
+        <span>💪 Empujar la pared 10 seg</span>
+        <span>🛋️ Apretar un cojín</span>
+        <span>📦 Llevar una caja liviana</span>
+        <span>🧸 Abrazar un peluche grande</span>
+        <span>🌯 Enrollarse en una manta</span>
+      </div>
+      <button class="copy btn-soft" data-copy="Vamos a ayudarle al cuerpo a sentirse fuerte y seguro: empuja la pared suavecito por 10 segundos, descansa y repetimos.">📋 Copiar guía</button>
+    </section>
+
+    <!-- Semáforo -->
+    <section id="semaforo" class="panel">
+      <div class="section-title">
+        <span>🚦</span>
+        <div>
+          <h2>Semáforo de actuación</h2>
+          <p>Para saber qué tan grave es la situación y qué hacer, de un vistazo.</p>
+        </div>
+      </div>
+      <div class="traffic">
+        <article class="traffic-card green">
+          <h3><span class="dot"></span>Verde · Acompañar</h3>
+          <p>Llanto leve, se comunica, acepta respirar o sentarse, baja con pausa.</p>
+          <p class="action">👉 Pausa, agua, validación, regreso gradual.</p>
+        </article>
+        <article class="traffic-card yellow">
+          <h3><span class="dot"></span>Amarillo · Avisar internamente</h3>
+          <p>Llanto intenso, miedo persistente, no quiere volver, se tapa oídos, necesita mucho tiempo.</p>
+          <p class="action">👉 Adulta referente, informar a coordinación y familia.</p>
+        </article>
+        <article class="traffic-card red">
+          <h3><span class="dot"></span>Rojo · Apoyo inmediato</h3>
+          <p>Dificultad para respirar, desmayo, dolor fuerte, vómito, desorientación, autolesión, intento de fuga o no logra calmarse.</p>
+          <p class="action">👉 Llamar acudiente, coordinación y atención médica si hay riesgo físico.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Frases listas -->
+    <section id="frases" class="panel">
+      <div class="section-title">
+        <span>💬</span>
+        <div>
+          <h2>Frases listas</h2>
+          <p>Toca cualquier tarjeta para copiar y usar la frase tal cual.</p>
+        </div>
+      </div>
+      <div class="scripts">
+        <article class="copy" data-copy="Te creo. El ruido se sintió muy fuerte para ti. Estás segura/o. No tienes que explicarme todo ahora. Vamos a ayudar a tu cuerpo a calmarse.">
+          <h3>🧒 Para el niño o niña</h3>
+          <p>“Te creo. El ruido se sintió muy fuerte para ti. Estás segura/o. No tienes que explicarme todo ahora. Vamos a ayudar a tu cuerpo a calmarse.”</p>
+          <span class="tap-hint">📋 Tocar para copiar</span>
+        </article>
+        <article class="copy" data-copy="Vamos a bajar un poquito el volumen. A veces el ruido puede sentirse muy fuerte para algunas personas. Seguimos la actividad con cuidado.">
+          <h3>👥 Para el grupo</h3>
+          <p>“Vamos a bajar un poquito el volumen. A veces el ruido puede sentirse muy fuerte para algunas personas. Seguimos la actividad con cuidado.”</p>
+          <span class="tap-hint">📋 Tocar para copiar</span>
+        </article>
+        <article class="copy" data-copy="Hola, queremos contarles que hoy tuvo un momento de ansiedad asociado al ruido. La acompañamos a un espacio tranquilo, hizo una pausa y estamos observando cómo evoluciona. Queremos preguntarles si en casa han notado sensibilidad al ruido o si hay alguna estrategia que le ayude cuando se siente sobrepasada.">
+          <h3>👨‍👩‍👧 Para la familia</h3>
+          <p>“Hola, queremos contarles que hoy tuvo un momento de ansiedad asociado al ruido. La acompañamos a un espacio tranquilo, hizo una pausa y estamos observando cómo evoluciona…”</p>
+          <span class="tap-hint">📋 Tocar para copiar</span>
+        </article>
+        <article class="copy" data-copy="Se presentó episodio de ansiedad/sobrecarga sensorial. Detonante reportado: ruido. Se retiró del estímulo, se acompañó con regulación y se evaluó regreso gradual. Pendiente seguimiento con familia.">
+          <h3>📋 Para coordinación</h3>
+          <p>“Se presentó episodio de ansiedad/sobrecarga sensorial. Detonante reportado: ruido. Se retiró del estímulo, se acompañó con regulación…”</p>
+          <span class="tap-hint">📋 Tocar para copiar</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- Principios -->
+    <section class="panel footer-note">
+      <h2>🌱 Principios de uso</h2>
+      <ul class="principles">
+        <li>💜 Validar primero, explicar después.</li>
+        <li>🧍 Una sola persona adulta acompaña; muchas miradas aumentan la crisis.</li>
+        <li>🤫 Menos palabras, más calma corporal.</li>
+        <li>🎯 El objetivo no es que “se porte bien”, es que vuelva a sentirse segura/o.</li>
+        <li>🚨 Si hay riesgo físico o síntomas intensos, se activa familia y apoyo médico.</li>
+      </ul>
+      <p class="small">Versión interna Musicala. Esta guía no reemplaza evaluación clínica ni atención de urgencias cuando hay riesgo físico o emocional alto.</p>
+    </section>
+  </main>
+
+  <!-- Botón flotante de emergencia -->
+  <button id="sosFab" class="sos-fab" aria-label="Abrir guía de emergencia">🤍 Ayuda ahora</button>
+
+  <!-- Guía de emergencia (overlay) -->
+  <div id="wizard" class="wizard" role="dialog" aria-modal="true" aria-label="Guía de emergencia paso a paso" hidden>
+    <div class="wizard-top">
+      <div class="wizard-progress" id="wizardProgress"></div>
+      <button id="wizardClose" class="wizard-close" aria-label="Cerrar guía">✕</button>
+    </div>
+    <div class="wizard-body" id="wizardBody"></div>
+    <div class="wizard-nav">
+      <button id="wizardPrev" class="btn-soft">‹ Anterior</button>
+      <button id="wizardNext" class="btn-primary">Siguiente ›</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status">Copiado</div>
+  <script src="app.js"></script>
+</body>
+</html>
