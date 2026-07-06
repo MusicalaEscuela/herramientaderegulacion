@@ -506,3 +506,5 @@ if("IntersectionObserver" in window){
 
 /* ---------- Init ---------- */
 renderEmotions();
+const yearEl = $("#year");
+if(yearEl) yearEl.textContent = new Date().getFullYear();
