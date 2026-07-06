@@ -7,12 +7,18 @@
   <title>Musicala | Primeros auxilios emocionales</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
+<body data-mode="ninos">
   <header class="app-header">
     <img src="logo.png" alt="Musicala" class="logo">
     <p class="eyebrow">Vacacionales y clases</p>
     <h1>Primeros auxilios emocionales</h1>
-    <p class="subtitle">Acompaña con calma momentos de ansiedad, llanto, miedo o sobrecarga sensorial.</p>
+    <p class="subtitle">Acompaña con calma cualquier emoción intensa: ansiedad, llanto, miedo, rabia, sobrecarga o ganas de no seguir las normas.</p>
+
+    <!-- Selector de versión: niños / adultos -->
+    <div class="mode-switch" role="group" aria-label="Elegir versión">
+      <button class="mode-btn is-active" data-mode="ninos">🧒 Niños</button>
+      <button class="mode-btn" data-mode="adultos">🧑 Adultos</button>
+    </div>
   </header>
 
   <main>
@@ -28,18 +34,46 @@
 
     <!-- Accesos rápidos -->
     <nav class="quick-nav" aria-label="Accesos rápidos">
+      <a href="#emociones">😊 Emociones</a>
+      <a href="#situaciones">🎬 Situaciones</a>
       <a href="#respirar">🌬️ Respirar</a>
-      <a href="#ruido">🎧 Ruido</a>
-      <a href="#grounding">🧭 Grounding</a>
+      <a href="#grounding">🖐️ 5·4·3·2·1</a>
       <a href="#cuerpo">🧸 Cuerpo</a>
       <a href="#frases">💬 Frases</a>
       <a href="#semaforo">🚦 Semáforo</a>
     </nav>
 
+    <!-- Selector de emociones (divertido para niños) -->
+    <section id="emociones" class="panel emo-panel">
+      <div class="section-title">
+        <span>😊</span>
+        <div>
+          <h2 data-mode-text="ninos">¿Cómo te sientes ahora?</h2>
+          <h2 data-mode-text="adultos" hidden>¿Qué estás sintiendo?</h2>
+          <p data-mode-text="ninos">Toca la carita que se parece a lo que sientes. ¡No hay respuestas malas!</p>
+          <p data-mode-text="adultos" hidden>Elige la emoción más cercana para ver una micro-guía de regulación.</p>
+        </div>
+      </div>
+      <div id="emoGrid" class="emo-grid" role="list"></div>
+      <div id="emoResult" class="emo-result" hidden></div>
+    </section>
+
+    <!-- Situaciones -->
+    <section id="situaciones" class="panel">
+      <div class="section-title">
+        <span>🎬</span>
+        <div>
+          <h2>Situaciones frecuentes</h2>
+          <p>Elige lo que está pasando y abre una guía paso a paso pensada para ese caso.</p>
+        </div>
+      </div>
+      <div id="situGrid" class="situ-grid"></div>
+    </section>
+
     <!-- Herramientas -->
     <section id="respirar" class="card">
       <h2>🌬️ Respiración guiada</h2>
-      <p>Para ansiedad, miedo, llanto o respiración rápida. Ideal de 4 a 12 años.</p>
+      <p>Para ansiedad, miedo, llanto o respiración rápida. Sirve para niños y adultos.</p>
       <div class="breathing-widget">
         <div id="breathStage" class="breath-stage"></div>
         <p id="breathText" class="breath-text">Huele una flor</p>
@@ -54,17 +88,29 @@
       </details>
     </section>
 
-    <section id="grounding" class="card">
-      <h2>🧭 Grounding 5-4-3-2-1</h2>
-      <p>Para volver al presente cuando hay bloqueo, miedo o sensación de perder el control.</p>
-      <ol class="grounding-list">
-        <li><b>5</b> cosas que pueda <b>ver</b></li>
-        <li><b>4</b> cosas que pueda <b>tocar</b></li>
-        <li><b>3</b> sonidos suaves que pueda <b>notar</b></li>
-        <li><b>2</b> olores o sensaciones</li>
-        <li><b>1</b> frase segura: “Estoy aquí y estoy a salvo”</li>
-      </ol>
-      <button class="copy btn-soft" data-copy="Vamos a buscar juntas/os 5 cosas que ves, 4 que puedes tocar, 3 sonidos suaves, 2 olores o sensaciones y una frase segura: estoy aquí y estoy a salvo.">📋 Copiar guía</button>
+    <!-- 5-4-3-2-1 GRANDE e interactivo -->
+    <section id="grounding" class="card ground-card">
+      <h2>🖐️ Grounding 5·4·3·2·1</h2>
+      <p>Para volver al presente cuando hay bloqueo, miedo, rabia o sensación de perder el control.</p>
+
+      <div class="ground-game">
+        <div class="ground-hero">
+          <div id="groundBig" class="ground-big">5</div>
+          <div class="ground-sense">
+            <span id="groundVerb" class="ground-verb">cosas que puedas VER</span>
+            <span id="groundIcon" class="ground-emoji">👀</span>
+          </div>
+        </div>
+        <div id="groundDots" class="ground-dots"></div>
+        <p id="groundHint" class="ground-hint">Busca 5 cosas a tu alrededor y dilas en voz alta.</p>
+        <div class="btn-row">
+          <button id="groundStart" class="btn-primary">▶ Empezar juego</button>
+          <button id="groundNext" class="btn-soft" hidden>Listo, siguiente ›</button>
+          <button id="groundReset" class="btn-soft" hidden>↺ Reiniciar</button>
+        </div>
+      </div>
+
+      <button class="copy btn-soft ground-copy" data-copy="Vamos a buscar juntas/os 5 cosas que ves, 4 que puedes tocar, 3 sonidos suaves, 2 olores o sensaciones y una frase segura: estoy aquí y estoy a salvo.">📋 Copiar guía</button>
     </section>
 
     <section id="ruido" class="card">
@@ -109,12 +155,12 @@
         </article>
         <article class="traffic-card yellow">
           <h3><span class="dot"></span>Amarillo · Avisar internamente</h3>
-          <p>Llanto intenso, miedo persistente, no quiere volver, se tapa oídos, necesita mucho tiempo.</p>
+          <p>Llanto intenso, miedo persistente, rabia que no baja, no quiere volver, se tapa oídos, necesita mucho tiempo.</p>
           <p class="action">👉 Adulta referente, informar a coordinación y familia.</p>
         </article>
         <article class="traffic-card red">
           <h3><span class="dot"></span>Rojo · Apoyo inmediato</h3>
-          <p>Dificultad para respirar, desmayo, dolor fuerte, vómito, desorientación, autolesión, intento de fuga o no logra calmarse.</p>
+          <p>Dificultad para respirar, desmayo, dolor fuerte, vómito, desorientación, autolesión, agresión con riesgo, intento de fuga o no logra calmarse.</p>
           <p class="action">👉 Llamar acudiente, coordinación y atención médica si hay riesgo físico.</p>
         </article>
       </div>
@@ -130,24 +176,29 @@
         </div>
       </div>
       <div class="scripts">
-        <article class="copy" data-copy="Te creo. El ruido se sintió muy fuerte para ti. Estás segura/o. No tienes que explicarme todo ahora. Vamos a ayudar a tu cuerpo a calmarse.">
+        <article class="copy" data-copy="Te creo. Eso se sintió muy fuerte para ti. Estás segura/o. No tienes que explicarme todo ahora. Vamos a ayudar a tu cuerpo a calmarse.">
           <h3>🧒 Para el niño o niña</h3>
-          <p>“Te creo. El ruido se sintió muy fuerte para ti. Estás segura/o. No tienes que explicarme todo ahora. Vamos a ayudar a tu cuerpo a calmarse.”</p>
+          <p>“Te creo. Eso se sintió muy fuerte para ti. Estás segura/o. No tienes que explicarme todo ahora. Vamos a ayudar a tu cuerpo a calmarse.”</p>
           <span class="tap-hint">📋 Tocar para copiar</span>
         </article>
-        <article class="copy" data-copy="Vamos a bajar un poquito el volumen. A veces el ruido puede sentirse muy fuerte para algunas personas. Seguimos la actividad con cuidado.">
+        <article class="copy" data-copy="Entiendo que quieras decidir por ti. Aquí puedes elegir muchas cosas. Y hay unas pocas que cuidamos entre todos para estar seguros. ¿Empezamos por la que tú elijas?">
+          <h3>🙅 Cuando no quiere seguir normas</h3>
+          <p>“Entiendo que quieras decidir por ti. Aquí puedes elegir muchas cosas. Y hay unas pocas que cuidamos entre todos para estar seguros…”</p>
+          <span class="tap-hint">📋 Tocar para copiar</span>
+        </article>
+        <article class="copy" data-copy="Vamos a bajar un poquito el volumen. A veces algo puede sentirse muy fuerte para algunas personas. Seguimos la actividad con cuidado.">
           <h3>👥 Para el grupo</h3>
-          <p>“Vamos a bajar un poquito el volumen. A veces el ruido puede sentirse muy fuerte para algunas personas. Seguimos la actividad con cuidado.”</p>
+          <p>“Vamos a bajar un poquito el volumen. A veces algo puede sentirse muy fuerte para algunas personas. Seguimos la actividad con cuidado.”</p>
           <span class="tap-hint">📋 Tocar para copiar</span>
         </article>
-        <article class="copy" data-copy="Hola, queremos contarles que hoy tuvo un momento de ansiedad asociado al ruido. La acompañamos a un espacio tranquilo, hizo una pausa y estamos observando cómo evoluciona. Queremos preguntarles si en casa han notado sensibilidad al ruido o si hay alguna estrategia que le ayude cuando se siente sobrepasada.">
+        <article class="copy" data-copy="Hola, queremos contarles que hoy tuvo un momento de mucha intensidad emocional y le costó seguir algunas indicaciones. Lo acompañamos con calma, hizo una pausa y volvió a la actividad. Nos gustaría preguntarles qué estrategias le ayudan en casa cuando necesita más autonomía o se siente sobrepasado, para acompañarlo mejor.">
           <h3>👨‍👩‍👧 Para la familia</h3>
-          <p>“Hola, queremos contarles que hoy tuvo un momento de ansiedad asociado al ruido. La acompañamos a un espacio tranquilo, hizo una pausa y estamos observando cómo evoluciona…”</p>
+          <p>“Hola, queremos contarles que hoy tuvo un momento de mucha intensidad emocional y le costó seguir algunas indicaciones. Lo acompañamos con calma…”</p>
           <span class="tap-hint">📋 Tocar para copiar</span>
         </article>
-        <article class="copy" data-copy="Se presentó episodio de ansiedad/sobrecarga sensorial. Detonante reportado: ruido. Se retiró del estímulo, se acompañó con regulación y se evaluó regreso gradual. Pendiente seguimiento con familia.">
+        <article class="copy" data-copy="Se presentó episodio de desregulación emocional con dificultad para aceptar indicaciones y necesidad de autonomía. Se evitó lucha de poder, se ofrecieron opciones dentro del límite, se acompañó la regulación corporal y se logró regreso gradual. Se observarán patrones (detonantes, frecuencia, contexto) sin emitir diagnósticos. Pendiente seguimiento con familia.">
           <h3>📋 Para coordinación</h3>
-          <p>“Se presentó episodio de ansiedad/sobrecarga sensorial. Detonante reportado: ruido. Se retiró del estímulo, se acompañó con regulación…”</p>
+          <p>“Se presentó episodio de desregulación emocional con dificultad para aceptar indicaciones… Se observarán patrones sin emitir diagnósticos…”</p>
           <span class="tap-hint">📋 Tocar para copiar</span>
         </article>
       </div>
@@ -160,10 +211,11 @@
         <li>💜 Validar primero, explicar después.</li>
         <li>🧍 Una sola persona adulta acompaña; muchas miradas aumentan la crisis.</li>
         <li>🤫 Menos palabras, más calma corporal.</li>
-        <li>🎯 El objetivo no es que “se porte bien”, es que vuelva a sentirse segura/o.</li>
+        <li>🎯 El objetivo no es que “se porte bien”, es que vuelva a sentirse segura/o y regulada/o.</li>
+        <li>🔍 Observamos y registramos lo que vemos (conductas, detonantes), <b>sin poner etiquetas ni diagnósticos</b>.</li>
         <li>🚨 Si hay riesgo físico o síntomas intensos, se activa familia y apoyo médico.</li>
       </ul>
-      <p class="small">Versión interna Musicala. Esta guía no reemplaza evaluación clínica ni atención de urgencias cuando hay riesgo físico o emocional alto.</p>
+      <p class="small">Versión interna Musicala. Esta guía no reemplaza evaluación clínica ni atención de urgencias cuando hay riesgo físico o emocional alto. No sustituye una valoración profesional del desarrollo.</p>
     </section>
   </main>
 
@@ -171,7 +223,7 @@
   <button id="sosFab" class="sos-fab" aria-label="Abrir guía de emergencia">🤍 Ayuda ahora</button>
 
   <!-- Guía de emergencia (overlay) -->
-  <div id="wizard" class="wizard" role="dialog" aria-modal="true" aria-label="Guía de emergencia paso a paso" hidden>
+  <div id="wizard" class="wizard" role="dialog" aria-modal="true" aria-label="Guía paso a paso" hidden>
     <div class="wizard-top">
       <div class="wizard-progress" id="wizardProgress"></div>
       <button id="wizardClose" class="wizard-close" aria-label="Cerrar guía">✕</button>

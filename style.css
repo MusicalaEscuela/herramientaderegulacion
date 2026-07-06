@@ -66,6 +66,33 @@ h1{
   opacity:.94;
 }
 
+/* ---------- Selector de versión niños/adultos ---------- */
+.mode-switch{
+  display:inline-flex;
+  gap:4px;
+  margin-top:16px;
+  padding:4px;
+  background:rgba(255,255,255,.18);
+  border-radius:999px;
+  backdrop-filter:blur(4px);
+}
+.mode-btn{
+  border:0;
+  background:transparent;
+  color:#fff;
+  font-weight:700;
+  font-size:.95rem;
+  padding:9px 18px;
+  border-radius:999px;
+  min-height:42px;
+  transition:background .2s, color .2s;
+}
+.mode-btn.is-active{
+  background:#fff;
+  color:var(--brand);
+  box-shadow:0 4px 12px rgba(35,15,75,.2);
+}
+
 main{
   max-width:960px;
   margin:0 auto;
@@ -380,6 +407,159 @@ details p{color:var(--muted)}
   font-weight:600;
   font-size:.92rem;
 }
+
+/* ---------- Selector de emociones ---------- */
+.emo-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+@media(max-width:520px){ .emo-grid{grid-template-columns:repeat(3,1fr)} }
+.emo-card{
+  border:2px solid #eee2ff;
+  background:#fff;
+  border-radius:20px;
+  padding:14px 6px 12px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  transition:transform .12s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.emo-card:active{transform:scale(.94)}
+.emo-card.is-picked{
+  border-color:var(--emo);
+  box-shadow:0 8px 22px color-mix(in srgb, var(--emo) 32%, transparent);
+  transform:translateY(-2px);
+}
+.emo-face{font-size:2.5rem; line-height:1; filter:drop-shadow(0 3px 6px rgba(0,0,0,.12))}
+body[data-mode="ninos"] .emo-face{font-size:2.9rem}
+.emo-name{
+  font-size:.82rem;
+  font-weight:700;
+  color:var(--ink);
+  text-align:center;
+  line-height:1.15;
+}
+@keyframes emo-bounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+body[data-mode="ninos"] .emo-card:not(.is-picked) .emo-face{
+  animation:emo-bounce 3.4s ease-in-out infinite;
+}
+body[data-mode="ninos"] .emo-card:nth-child(2n) .emo-face{animation-delay:.6s}
+body[data-mode="ninos"] .emo-card:nth-child(3n) .emo-face{animation-delay:1.2s}
+
+.emo-result{margin-top:16px}
+.emo-result-inner{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  background:color-mix(in srgb, var(--emo) 12%, #fff);
+  border:2px solid color-mix(in srgb, var(--emo) 40%, transparent);
+  border-radius:20px;
+  padding:16px;
+  animation:step-in .25s ease;
+}
+.emo-result-face{font-size:2.6rem; line-height:1; flex-shrink:0}
+.emo-result-inner h3{margin:0 0 6px; font-size:1.1rem}
+.emo-result-inner p{margin:0 0 12px; color:var(--ink); font-size:1rem; line-height:1.45}
+.emo-actions{justify-content:flex-start}
+.emo-actions .btn-soft,.emo-actions .btn-primary{min-height:44px; padding:10px 16px; font-size:.95rem}
+
+/* ---------- Situaciones ---------- */
+.situ-grid{display:grid; gap:10px}
+.situ-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  width:100%;
+  text-align:left;
+  border:1.5px solid #ece2ff;
+  background:#faf7ff;
+  border-radius:18px;
+  padding:14px 16px;
+  transition:transform .12s ease, border-color .15s ease;
+}
+.situ-card:active{transform:scale(.98); border-color:var(--brand-2)}
+.situ-emoji{font-size:2rem; line-height:1; flex-shrink:0}
+.situ-txt{display:flex; flex-direction:column; gap:2px; flex:1}
+.situ-txt strong{font-size:1.02rem; color:var(--ink)}
+.situ-txt small{font-size:.88rem; color:var(--muted)}
+.situ-card .sos-arrow{font-size:1.6rem; color:var(--brand-2); opacity:.7}
+
+/* ---------- 5·4·3·2·1 grande ---------- */
+.ground-game{
+  background:linear-gradient(160deg,#f4edff,#eef9f7);
+  border:1.5px solid #e6dbfb;
+  border-radius:20px;
+  padding:20px 16px;
+  margin:6px 0 14px;
+  text-align:center;
+}
+.ground-hero{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+.ground-big{
+  font-size:clamp(4.5rem,26vw,7rem);
+  font-weight:900;
+  line-height:1;
+  background:linear-gradient(135deg,#2e7fe0,#7c3ff2 55%,#d4149b);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  filter:drop-shadow(0 6px 14px rgba(106,59,216,.25));
+}
+@keyframes ground-pop{
+  0%{transform:scale(.4); opacity:0}
+  60%{transform:scale(1.12)}
+  100%{transform:scale(1); opacity:1}
+}
+.ground-big.pop{animation:ground-pop .4s cubic-bezier(.3,1.4,.5,1)}
+.ground-sense{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.ground-verb{
+  font-size:1.25rem;
+  font-weight:800;
+  color:var(--ink);
+}
+.ground-emoji{font-size:2rem; line-height:1}
+.ground-dots{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  margin:16px 0 10px;
+}
+.g-dot{
+  width:34px; height:34px;
+  border-radius:50%;
+  display:grid; place-items:center;
+  font-weight:800;
+  font-size:.95rem;
+  background:#fff;
+  border:2px solid #ded2f5;
+  color:var(--muted);
+  transition:.25s ease;
+}
+.g-dot.current{border-color:var(--brand); color:var(--brand); transform:scale(1.15)}
+.g-dot.done{background:var(--brand-2); border-color:var(--brand-2); color:#fff}
+.ground-hint{
+  margin:6px auto 14px;
+  max-width:420px;
+  font-size:1.02rem;
+  color:var(--muted);
+  min-height:1.4em;
+}
+.ground-copy{margin-top:4px; width:100%}
 
 /* ---------- Semáforo ---------- */
 .traffic{display:grid; gap:12px}
