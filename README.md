@@ -1,22 +1,22 @@
-# Musicala · Primeros auxilios emocionales
+# Musicala · Regulación V2
 
-Aplicativo web estático, pensado para el celular, que guía a docentes durante episodios de ansiedad, llanto, miedo o sobrecarga sensorial en niños. La idea: pasa algo inesperado, abres la herramienta y en segundos tienes una guía paso a paso para acompañar con calma.
+Herramienta interna, rápida y móvil para orientar el acompañamiento durante momentos de alta intensidad emocional. Ofrece orientación general y **no reemplaza protocolos de emergencia ni valoración clínica**.
 
-## Cómo usarlo
-1. Abre `index.html` en el navegador (funciona sin internet una vez cargado).
-2. Puedes subir la carpeta a Firebase Hosting, GitHub Pages, Wix embed o cualquier hosting estático.
-3. En el celular, toca **"Necesito ayuda ahora"** para abrir la guía de emergencia a pantalla completa.
+## Propósito y privacidad
 
-## Qué incluye
-- **Guía de emergencia paso a paso** (pantalla completa, un paso a la vez, con frases listas para copiar y respiración integrada).
-- Botón flotante de emergencia siempre visible al hacer scroll.
-- Respiración guiada de 60 segundos con animación.
-- Técnica grounding 5-4-3-2-1.
-- Checklist interactivo para sobrecarga por ruido.
-- Semáforo de actuación (verde / amarillo / rojo).
-- Frases listas para niño/niña, grupo, familia y coordinación (tocar para copiar).
+Incluye triage SOS, prevención, herramientas voluntarias, semáforo, registro objetivo y plan personal. No hay base de datos ni envío de formularios. Los registros no se guardan. Solo se conservan en este navegador las preferencias visuales, selector de persona y el plan si se presiona **Guardar en este dispositivo**. No escribas nombres, diagnósticos ni datos sensibles en dispositivos compartidos.
 
-## Diseño
-- Móvil primero: botones grandes (mín. 48 px), tipografía legible, navegación por chips.
-- Paleta suave y calmada, respeta `prefers-reduced-motion` y las zonas seguras de iOS.
-- Sin dependencias externas: HTML, CSS y JS puros.
+## Uso, offline y despliegue
+
+No requiere npm ni build: son archivos HTML, CSS y JavaScript. Para probar Service Worker/PWA localmente, ejecuta `python -m http.server 8000` y abre `http://localhost:8000`. Tras la primera carga, pon el navegador sin conexión y recarga. GitHub Pages publica los archivos estáticos; verifica en **Settings → Pages** la rama elegida. Al actualizar recursos offline, incrementa `CACHE` en `service-worker.js`.
+
+## Estructura
+
+- `index.html`: interfaz accesible y formularios.
+- `style.css`: responsive, modo tranquilo e impresión.
+- `app.js`: SOS, herramientas, almacenamiento local, accesibilidad y PWA.
+- `manifest.webmanifest`, `service-worker.js`, `icon.svg`: instalación y caché.
+
+## Limitaciones
+
+La instalación depende del navegador/HTTPS y la herramienta no sustituye protocolos institucionales de seguridad, urgencias ni personal autorizado. Versión 2.0.0.
