@@ -8,7 +8,7 @@ Incluye triage SOS, prevención, herramientas voluntarias, semáforo, registro o
 
 ## Uso, offline y despliegue
 
-No requiere npm ni build: son archivos HTML, CSS y JavaScript. Para probar Service Worker/PWA localmente, ejecuta `python -m http.server 8000` y abre `http://localhost:8000`. Tras la primera carga, pon el navegador sin conexión y recarga. GitHub Pages publica los archivos estáticos; verifica en **Settings → Pages** la rama elegida. Al actualizar recursos offline, incrementa `CACHE` en `service-worker.js`.
+No requiere npm ni build: son archivos HTML, CSS y JavaScript. Para probar Service Worker/PWA localmente, ejecuta `python -m http.server 8000` y abre `http://localhost:8000`. Tras la primera carga, pon el navegador sin conexión y recarga. GitHub Pages publica los archivos estáticos; verifica en **Settings → Pages** la rama elegida. Al actualizar recursos offline, incrementa `CACHE` en `service-worker.js`. La aplicación consulta primero la red y usa la caché sin conexión; al activar una actualización, recarga la pestaña una vez.
 
 ## Estructura
 
@@ -19,4 +19,4 @@ No requiere npm ni build: son archivos HTML, CSS y JavaScript. Para probar Servi
 
 ## Limitaciones
 
-La instalación depende del navegador/HTTPS y la herramienta no sustituye protocolos institucionales de seguridad, urgencias ni personal autorizado. Versión 2.0.0.
+La instalación depende del navegador/HTTPS y la herramienta no sustituye protocolos institucionales de seguridad, urgencias ni personal autorizado. Versión 2.0.1.
