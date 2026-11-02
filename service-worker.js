@@ -1,4 +1,4 @@
-const CACHE="musicala-regulacion-v7";
+const CACHE="musicala-regulacion-v8";
 const PREFIX="musicala-regulacion-";
 const ASSETS=["./","./index.html","./style.css","./app.js","./child.js","./handoff.js","./child.css","./manifest.webmanifest","./icon.svg","./logo.png"];
 self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));

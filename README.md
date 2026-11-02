@@ -19,7 +19,7 @@ No requiere npm ni build: son archivos HTML, CSS y JavaScript. Para probar Servi
 
 ## Limitaciones
 
-La instalación depende del navegador/HTTPS y la herramienta no sustituye protocolos institucionales de seguridad, urgencias ni personal autorizado. Versión 2.1.0.
+La instalación depende del navegador/HTTPS y la herramienta no sustituye protocolos institucionales de seguridad, urgencias ni personal autorizado. Versión 2.2.0.
 
 ## Espacio infantil
 
@@ -28,7 +28,7 @@ La entrada principal ofrece caritas, una flor con respiración opcional, explora
 ## Pausa acompañada y modo entrega
 
 1. Antes de clase, instala la herramienta desde el navegador si está disponible y configura Fijar aplicaciones (Android) o Acceso guiado (iPhone). Comprueba la salida a otras apps, controles del navegador y notificaciones en cada equipo.
-2. Toca **Preparar pausa**. Selecciona lenguaje breve o para lectores, voz o silencio, primera actividad y revisión en 1, 2 o 3 minutos. La voz se puede probar antes de entregar.
+2. Toca **Para el profe**. Selecciona lenguaje breve o para lectores, voz o silencio, primera actividad y revisión en 1, 2 o 3 minutos desde los ajustes desplegables. Por defecto se propone una secuencia guiada y revisión en 2 minutos. La voz se puede probar antes de entregar.
 3. Define y confirma un PIN de 4–8 cifras, distinto al del teléfono. Acuerda la pausa con el niño, comprueba seguridad y acompañamiento a la vista, inicia el modo entrega y activa el bloqueo del sistema antes de prestar el equipo.
 4. Al finalizar la actividad, pedir compañía o cumplirse el tiempo, se solicita volver al profe. No se envían notificaciones al adulto ni se infiere que el niño está regulado. Para otra pausa, el adulto introduce el PIN y vuelve a revisar cómo está.
 
@@ -45,3 +45,16 @@ Bloqueo del dispositivo: [Android](https://support.google.com/android/answer/945
 ### Verificación
 
 Ejecuta `node --test tests/handoff.test.cjs` para comprobar el cierre por tiempo, protección tras recargar, cierre de actividades y resumen del PIN. La comprobación de bloqueo del sistema, notificaciones y voz debe hacerse en los Android/iPhone reales de los profes.
+
+## Actividades visuales y entrada simple · 2.2
+
+La entrada muestra **Guíame** y **Quiero elegir**. Guíame recorre tres momentos: manos suaves (se puede solo mirar o pasar), encontrar tres colores en el entorno y descansar. La actividad usa frases cortas y una sola indicación por fase, con lectura opcional. No comprueba movimientos mediante sensores ni evalúa si el niño está calmado. Las actividades libres añaden hombros suaves (la tortuga) y búsqueda de colores, además de flor, sentidos y jardín. Se puede pasar cualquier paso sin penalización. Los temporizadores se detienen al cambiar de actividad o esconder la pestaña.
+
+### Fuentes y adaptaciones
+
+- [Newcastle Hospitals · psicología infantil, relajación](https://www.newcastle-hospitals.nhs.uk/services/great-north-childrens-hospital/childrens-health-psychology/resources/relaxation-2/): alternancia de tensión y descanso de manos y hombros. Adaptación conservadora: movimiento suave y breve, sin empujar el cuello, sin exigir tensión máxima ni sincronizar con retención de aire. Detenerse ante molestia.
+- [Sheffield Children's · estrategias de relajación](https://www.sheffieldchildrens.nhs.uk/download/846/autism-resources/14634/relaxation-strategies.pdf): referencias infantiles de manos y tortuga. La app no reproduce el guion de tensión fuerte del documento.
+- [University Hospitals Dorset · Managing emotions and feelings, p. 29](https://www.uhd.nhs.uk/uploads/about/docs/our_publications/patient_information_leaflets/cdc/managing-emotions-and-feelings.pdf): observar objetos y colores del entorno como grounding. Adaptación: buscar un color a la vez, sin alejarse y con opción de pasar; no es una prueba de reconocimiento de colores.
+- [UNICEF · actividades de bienestar para estudiantes](https://www.unicef.org/stories/teacher-student-activities-support-well-being): respiración y apoyos de bienestar en contexto educativo. La flor mantiene respiración suave, opcional, sin pausas de retención ni exigencia de un ritmo determinado.
+
+La selección y las adaptaciones son decisiones de diseño, no ensayos clínicos sobre esta app. Las fuentes no avalan el producto. Se mantiene pendiente la revisión profesional y la prueba supervisada con las edades y necesidades de Musicala.

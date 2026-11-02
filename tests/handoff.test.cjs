@@ -16,7 +16,7 @@ function harness(saved=null){
     childRoot:{querySelector:selector=>selector==='.child-bottom'?footer:null,append(){}},
     childStop(){},childScreen:html=>context.lastHTML=html,childFinish:()=>context.freeFinish=true,
     childArt:{cloud:'cloud'},childVoice:false,setAudience(){},childBreath(){},childPebbles(){},childSense(){},childStep:0,
-    childSpeak(){},childHome(){}};
+    childSpeak(){},childHome(){},childCatalog(){}};
   vm.createContext(context);vm.runInContext(source,context);
   return {context,session,intervals,footer,run:code=>vm.runInContext(code,context),advance:ms=>{now+=ms;for(const fn of [...intervals.values()])fn();}};
 }

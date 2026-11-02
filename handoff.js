@@ -29,20 +29,25 @@ function preparePause() {
   childStop();
   childVoice = false;
   const prefs = readPauseJSON(localStorage, PREFS_KEY) || {};
-  childScreen(`<p class="child-eyebrow">PARA EL PROFE · ANTES DE ENTREGAR EL CELULAR</p>
-    <h1>Prepara una pausa.</h1>
-    <p class="child-instruction">Conecta primero y acuerda un lugar cercano donde puedas mantener al niño a la vista.</p>
-    <form id="pauseSetup" class="pause-form">
-      <label>Lenguaje<select name="language"><option value="simple">Breve, con dibujos</option><option value="reader">Para lectores</option></select></label>
-      <label>Guía<select name="voice"><option value="off">En silencio</option><option value="on">Con voz</option></select></label>
-      <p class="pause-hint">La voz depende del dispositivo y puede requerir conexión. Puedes probarla antes de entregar.</p>
-      ${pauseButton('testVoice', 'Probar voz')}
-      <label>Empezar con<select name="activity"><option value="cloud">Mirar una nube</option><option value="breath">La flor que respira</option><option value="senses">Explorar alrededor</option><option value="pebbles">Jardín de piedras</option></select></label>
-      <label>Volver a revisar al niño en<select name="duration"><option value="60">1 minuto</option><option value="120">2 minutos</option><option value="180">3 minutos</option></select></label>
-      <p class="pause-hint">Al cumplirse el tiempo, la app pide mostrar el celular al profe. No envía alertas a otro dispositivo y no determina si ya está regulado.</p>
-      <label>PIN de esta pausa<input name="pin" type="password" inputmode="numeric" pattern="[0-9]{4,8}" minlength="4" maxlength="8" autocomplete="new-password" required aria-describedby="pinHint"></label>
-      <p id="pinHint" class="pause-hint">De 4 a 8 números. Usa uno distinto al del teléfono. Se pide para acceder a los controles del profe; no bloquea otras aplicaciones.</p>
-      <label>Repite el PIN<input name="pinAgain" type="password" inputmode="numeric" pattern="[0-9]{4,8}" minlength="4" maxlength="8" autocomplete="new-password" required></label>
+  if (prefs.version !== 2) { prefs.activity = 'guided'; prefs.duration = '120'; }
+  childScreen(`<p class="child-eyebrow">PARA EL PROFE</p><h1>Prepara y entrega.</h1>
+    <p class="child-instruction">«Estoy cerca. Hacemos una pausa y vuelvo contigo».</p>
+    <form id="pauseSetup" class="pause-form compact-setup">
+      <div class="setup-row"><label>Lenguaje<select name="language"><option value="simple">Con dibujos</option><option value="reader">Para lectores</option></select></label>
+      <label>Guía<select name="voice"><option value="off">Sin voz</option><option value="on">Con voz</option></select></label></div>
+      <div class="setup-row"><label>Tu PIN<input name="pin" aria-label="PIN de esta pausa" type="password" inputmode="numeric" pattern="[0-9]{4,8}" minlength="4" maxlength="8" autocomplete="new-password" required></label>
+      <label>Repítelo<input name="pinAgain" aria-label="Repite el PIN" type="password" inputmode="numeric" pattern="[0-9]{4,8}" minlength="4" maxlength="8" autocomplete="new-password" required></label></div>
+      <p class="pause-hint">4–8 números. Distinto al del celular.</p>
+      <label class="pause-check"><input type="checkbox" name="ready" required><span>Sin riesgo inmediato, a mi vista. Protegí el celular y volveré a acompañarlo.</span></label>
+      <p id="pauseSetupError" role="alert"></p><button class="child-primary" type="submit">▶ Empezar y entregar</button>
+      <p class="pause-hint">El PIN protege esta app. Para impedir salir: fija la app (Android) o activa Acceso guiado (iPhone).</p>
+      <details class="pause-device"><summary>Cambiar actividad o tiempo</summary>
+        <label>Empezar con<select name="activity"><option value="guided">Guíame · 3 pasos</option><option value="hands">Manos suaves</option><option value="shoulders">La tortuga</option><option value="colors">Busca colores</option><option value="breath">La flor</option><option value="senses">Mira y siente</option><option value="pebbles">El jardín</option><option value="cloud">Solo mirar</option></select></label>
+        <label>Volver a revisar en<select name="duration"><option value="120">2 minutos</option><option value="60">1 minuto</option><option value="180">3 minutos</option></select></label>
+        <p class="pause-hint">Al terminar pide volver al profe. No envía alertas a otro celular.</p>
+        ${pauseButton('testVoice','Probar voz')}
+        <p class="pause-hint">La voz depende del dispositivo; puede necesitar conexión.</p>
+      </details>
       <details class="pause-device"><summary>Proteger el teléfono: Android / iPhone</summary>
         <p><b>La app no puede activar el bloqueo del sistema.</b> Configúralo una vez y pruébalo antes de prestar el teléfono.</p>
         <p><b>Android:</b> activa Fijar aplicaciones en Ajustes → Seguridad (el nombre varía). Exige PIN, patrón o contraseña al salir. Abre esta herramienta instalada, entra en Recientes y fija su aplicación.</p>
@@ -51,12 +56,8 @@ function preparePause() {
         <p>Para recuperar el teléfono usa la autenticación del sistema. Después, el PIN de esta pausa permite abrir los controles internos. En iPhone, sal de Acceso guiado para usar los servicios de emergencia.</p>
         <p><a href="https://support.google.com/android/answer/9455138?hl=es" target="_blank" rel="noopener noreferrer">Guía oficial Android</a> · <a href="https://support.apple.com/es-co/guide/iphone/iph7fad0d10/ios" target="_blank" rel="noopener noreferrer">Guía oficial iPhone</a></p>
       </details>
-      <div class="pause-script"><b>Puedes decir:</b><p>«Veo que esto se siente difícil. Puedes quedarte aquí cerca y probar una pausa. Voy a atender al grupo y vuelvo a mirarte cuando termine. Si me necesitas antes, levanta la mano».</p></div>
-      <label class="pause-check"><input type="checkbox" name="ready" required><span>Puede usar la pausa sin riesgo inmediato, permanecerá a la vista y volveré a acompañarlo. Revisé cómo impedir que salga a otras apps en este celular.</span></label>
-      <p class="pause-hint">Si hay riesgo físico o necesita atención continua, pide apoyo y usa la guía de seguridad para acompañantes. No entregues el celular como único apoyo.</p>
-      <p id="pauseSetupError" role="alert"></p>
-      <button class="child-primary" type="submit">Iniciar modo entrega</button>
-      ${pauseButton('cancelSetup', 'Volver sin iniciar')}
+      <details class="pause-device"><summary>Cómo acompañar esta pausa</summary><p>Mantén al niño a la vista y vuelve a acompañarlo al terminar. Si hay riesgo o requiere atención continua, pide apoyo. Practiquen estas actividades también en momentos tranquilos.</p><p>Puede mirar, pasar o parar. No se exige respirar ni moverse. Si un movimiento molesta, se detiene.</p><p>Al volver, observa cómo está y ofrece compañía o regreso gradual. Terminar no confirma que esté regulado.</p>${pauseButton('adult','Guía de acompañantes')}</details>
+      ${pauseButton('cancelSetup','Volver')}
     </form>`);
   const form = document.querySelector('#pauseSetup');
   for (const name of ['language', 'voice', 'activity', 'duration']) {
@@ -72,20 +73,21 @@ async function startHandoff(event) {
   const pin = values.get('pin');
   if (!form.reportValidity()) return;
   if (!/^[0-9]{4,8}$/.test(pin) || pin !== values.get('pinAgain')) {
-    error.textContent = 'Los PIN deben coincidir y tener entre 4 y 8 números.';
+    error.textContent = 'Revisa el PIN: deben coincidir (4–8 números).';
     return;
   }
   const submit = form.querySelector('[type="submit"]');
   submit.disabled = true;
   try {
     const salt = Array.from(crypto.getRandomValues(new Uint8Array(16)), b => b.toString(16).padStart(2, '0')).join('');
-    const preferences = Object.fromEntries(['language', 'voice', 'activity', 'duration'].map(key => [key, values.get(key)]));
+    const preferences = { ...Object.fromEntries(['language', 'voice', 'activity', 'duration'].map(key => [key, values.get(key)])), version: 2 };
     const session = { ...preferences, salt, digest: await pauseDigest(pin, salt), deadline: Date.now() + Number(preferences.duration) * 1000 };
     // No se guarda el PIN, las emociones ni respuestas del niño.
     sessionStorage.setItem(HANDOFF_KEY, JSON.stringify(session));
     try { localStorage.setItem(PREFS_KEY, JSON.stringify(preferences)); } catch { /* preferencias opcionales */ }
     handoff = session;
     childVoice = preferences.voice === 'on';
+    childLanguage = preferences.language;
     document.body.classList.add('handoff-active');
     form.reset();
     startPauseReminder();
@@ -105,6 +107,10 @@ function startPauseReminder() {
   }, 1000);
 }
 function startPauseActivity(activity) {
+  guidedPause = false;
+  if (activity === 'guided') return childGuided();
+  if (activity === 'hands' || activity === 'shoulders') return childMovement(activity);
+  if (activity === 'colors') { childStep = 0; return childColors(); }
   if (activity === 'breath') return childBreath();
   if (activity === 'senses') { childStep = 0; return childSense(); }
   if (activity === 'pebbles') return childPebbles();
@@ -113,18 +119,19 @@ function startPauseActivity(activity) {
 }
 function pauseChoices() {
   if (handoff?.awaitingReview || (handoff && Date.now() >= handoff.deadline)) return showTeacherReturn();
-  pauseLayout('Tú eliges.', handoff?.language === 'simple' ? '¿Miramos o exploramos?' : 'Puedes probar una actividad o descansar. No hay que hacerlo perfecto.',
-    `<div class="child-stacked">${pauseButton('breath', '❀ Mirar la flor', true)}${pauseButton('senses', '✧ Explorar alrededor')}</div>`);
+  childCatalog();
 }
 function pauseRest() {
-  pauseLayout('Puedes descansar.', 'Deja el celular a un lado, cerca de tu acompañante. Si lo necesitas, levanta la mano.',
-    `<div class="child-mascot">${childArt.cloud}</div>${pauseButton('return', 'Mostrar al profe', true)}`);
+  guidedPause = false;
+  pauseLayout('Puedes parar.', 'Deja el celular cerca de tu profe.',
+    `<div class="child-mascot">${childArt.cloud}</div>${pauseButton('return','♡ Mi profe',true)}`);
 }
 function showTeacherReturn() {
   clearInterval(handoffReminder);
+  guidedPause = false;
   if (handoff) { handoff.awaitingReview = true; persistHandoff(); }
-  pauseLayout('Es momento de ver al profe.', 'Muéstrale esta pantalla o levanta la mano. Está bien si todavía te sientes igual.',
-    `<div class="company-message">Profe, ¿me acompañas un momento?</div><p class="child-note">Este botón no envía un aviso. Acércate solo si puedes hacerlo con seguridad.</p>${pauseButton('teacher', 'Ya estoy con mi profe', true)}`);
+  pauseLayout('Es momento de ver al profe.', 'Muéstrale esto o levanta la mano.',
+    `<div class="child-mascot">${childArt.cloud}</div><div class="company-message">¿Me acompañas?</div><p class="child-note">No envía un aviso. Está bien si te sientes igual.</p>${pauseButton('teacher','Ya está mi profe',true)}`);
 }
 function showPauseUnlock(target = 'child') {
   if (!handoff) return;
@@ -206,7 +213,12 @@ document.addEventListener('click', event => {
     event.preventDefault(); event.stopImmediatePropagation(); showPauseUnlock(button.id === 'adultMode' ? 'adult' : 'child'); return;
   }
   const actionChild = button.dataset.child;
-  if (['home', 'finish', 'help', 'rest', 'feeling', 'feel'].includes(actionChild)) {
+  if (actionChild && actionChild !== 'voice' && (handoff.awaitingReview || Date.now() >= handoff.deadline)) {
+    event.preventDefault(); event.stopImmediatePropagation();
+    if (actionChild === 'rest') pauseRest(); else showTeacherReturn();
+    return;
+  }
+  if (['home', 'catalog', 'finish', 'help', 'rest', 'feeling', 'feel'].includes(actionChild)) {
     event.preventDefault(); event.stopImmediatePropagation();
     if (actionChild === 'help') showTeacherReturn();
     else if (actionChild === 'rest') pauseRest();
@@ -218,18 +230,12 @@ document.addEventListener('click', event => {
 // Aplica el modo entrega a todas las pantallas, incluidas las que terminan por temporizador.
 const originalChildScreen = childScreen;
 childScreen = function (html) {
-  if (handoff?.language === 'simple') {
-    html = html.replace('Si te resulta cómodo, toma aire suave cuando la flor crece y suéltalo cuando se hace pequeña.', 'Mira la flor. Si quieres, respira suave con ella.')
-      .replace('Mira a tu alrededor. Puede ser un color o un objeto.', 'Mira un color o un objeto.')
-      .replace('Si quieres, siente tu ropa o una superficie cercana.', 'Puedes tocar tu ropa.')
-      .replace('Toca las piedras para llevarlas al jardín. No hay tiempo límite.', 'Toca una piedra. Sin afán.');
-  }
   originalChildScreen(html);
   if (!handoff) return;
   const brand = childRoot.querySelector('.child-brand');
   if (brand) brand.removeAttribute('href');
   const footer = childRoot.querySelector('.child-bottom');
-  footer.innerHTML = `${handoff.awaitingReview ? pauseButton('rest', 'Descansar de la pantalla') : pauseButton('choices', 'Elegir otra pausa')}${pauseButton('return', '♡ Quiero compañía')}`;
+  footer.innerHTML = `${handoff.awaitingReview ? pauseButton('rest', 'Descansar') : pauseButton('choices', '⌂ Cambiar')}${pauseButton('return', '♡ Mi profe')}`;
   const teacher = document.createElement('button');
   teacher.type = 'button'; teacher.dataset.pause = 'teacher'; teacher.textContent = 'Para el profe';
   teacher.className = 'teacher-access';
@@ -242,6 +248,7 @@ const restoredHandoff = readPauseJSON(sessionStorage, HANDOFF_KEY);
 if (restoredHandoff && /^[a-f0-9]{64}$/.test(restoredHandoff.digest) && /^[a-f0-9]{32}$/.test(restoredHandoff.salt) && Number.isFinite(restoredHandoff.deadline)) {
   handoff = restoredHandoff;
   childVoice = handoff.voice === 'on';
+  childLanguage = handoff.language;
   document.body.classList.add('handoff-active');
   setAudience(true);
   // Tras recargar se solicita retomar contacto, sin repetir una actividad automáticamente.
