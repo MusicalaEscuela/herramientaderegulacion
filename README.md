@@ -19,8 +19,29 @@ No requiere npm ni build: son archivos HTML, CSS y JavaScript. Para probar Servi
 
 ## Limitaciones
 
-La instalación depende del navegador/HTTPS y la herramienta no sustituye protocolos institucionales de seguridad, urgencias ni personal autorizado. Versión 2.0.1.
+La instalación depende del navegador/HTTPS y la herramienta no sustituye protocolos institucionales de seguridad, urgencias ni personal autorizado. Versión 2.1.0.
 
 ## Espacio infantil
 
 La entrada principal ofrece caritas, una flor con respiración opcional, exploración guiada de sentidos y un jardín táctil sin puntajes. Cada actividad permite salir y pedir compañía. La voz es opcional y depende de las voces disponibles en el navegador o dispositivo; puede no funcionar sin conexión. Un adulto debe permanecer disponible durante el uso. La guía y los registros para acompañantes se abren desde el selector superior. No se guardan emociones ni actividad infantil.
+
+## Pausa acompañada y modo entrega
+
+1. Antes de clase, instala la herramienta desde el navegador si está disponible y configura Fijar aplicaciones (Android) o Acceso guiado (iPhone). Comprueba la salida a otras apps, controles del navegador y notificaciones en cada equipo.
+2. Toca **Preparar pausa**. Selecciona lenguaje breve o para lectores, voz o silencio, primera actividad y revisión en 1, 2 o 3 minutos. La voz se puede probar antes de entregar.
+3. Define y confirma un PIN de 4–8 cifras, distinto al del teléfono. Acuerda la pausa con el niño, comprueba seguridad y acompañamiento a la vista, inicia el modo entrega y activa el bloqueo del sistema antes de prestar el equipo.
+4. Al finalizar la actividad, pedir compañía o cumplirse el tiempo, se solicita volver al profe. No se envían notificaciones al adulto ni se infiere que el niño está regulado. Para otra pausa, el adulto introduce el PIN y vuelve a revisar cómo está.
+
+El modo entrega oculta la navegación de adulto. El PIN solo protege controles de esta pestaña; **no impide salir del navegador ni bloquea el teléfono**. Se conserva en `sessionStorage` un resumen criptográfico con sal aleatoria y el estado mínimo de la pausa, sin el PIN en texto, emociones ni respuestas infantiles. Recargar conserva la protección y pide retomar contacto con el profe. Si se olvida el PIN, recupera el teléfono con el bloqueo del sistema y cierra la pestaña/ventana; abrir otra sesión no conserva esta protección interna. Las preferencias de lenguaje, voz, actividad y duración se guardan localmente sin identidad. No se usa IA ni se envían estos datos a un servidor.
+
+El tiempo es un recordatorio de revisión adulta, no una duración de tratamiento. La pantalla puede descansar en silencio; las actividades son voluntarias. La voz depende del navegador y de las voces instaladas y no está garantizada sin conexión. Si se oculta la app, la respiración se detiene; al volver se revisa si corresponde regresar al adulto.
+
+### Fundamento y límites del contenido
+
+El diseño prioriza conexión, seguridad, pocas instrucciones y regulación antes de pedir explicaciones, siguiendo orientaciones generales de [AAP](https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/creating-calm-how-to-talk-with-your-child-when-theyre-stressed.aspx) y [CDC para niños pequeños](https://www.cdc.gov/parenting-toddlers/noticing-and-naming/emotion-coaching.html). Estas fuentes no validan clínicamente esta aplicación. Falta revisión de los guiones por psicología infantil y prueba supervisada en el contexto de Musicala. No sustituye la presencia disponible de un adulto ni se usa como único apoyo ante riesgo o necesidad de atención continua.
+
+Bloqueo del dispositivo: [Android](https://support.google.com/android/answer/9455138?hl=es) · [iPhone](https://support.apple.com/es-co/guide/iphone/iph7fad0d10/ios). En iPhone, es necesario salir de Acceso guiado para usar servicios de emergencia.
+
+### Verificación
+
+Ejecuta `node --test tests/handoff.test.cjs` para comprobar el cierre por tiempo, protección tras recargar, cierre de actividades y resumen del PIN. La comprobación de bloqueo del sistema, notificaciones y voz debe hacerse en los Android/iPhone reales de los profes.
