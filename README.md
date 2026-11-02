@@ -1,4 +1,4 @@
-# Musicala · Regulación V2
+# Musicala · Regulación
 
 Herramienta interna, rápida y móvil para orientar el acompañamiento durante momentos de alta intensidad emocional. Ofrece orientación general y **no reemplaza protocolos de emergencia ni valoración clínica**.
 
@@ -20,3 +20,7 @@ No requiere npm ni build: son archivos HTML, CSS y JavaScript. Para probar Servi
 ## Limitaciones
 
 La instalación depende del navegador/HTTPS y la herramienta no sustituye protocolos institucionales de seguridad, urgencias ni personal autorizado. Versión 2.0.1.
+
+## Espacio infantil
+
+La entrada principal ofrece caritas, una flor con respiración opcional, exploración guiada de sentidos y un jardín táctil sin puntajes. Cada actividad permite salir y pedir compañía. La voz es opcional y depende de las voces disponibles en el navegador o dispositivo; puede no funcionar sin conexión. Un adulto debe permanecer disponible durante el uso. La guía y los registros para acompañantes se abren desde el selector superior. No se guardan emociones ni actividad infantil.
